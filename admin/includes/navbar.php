@@ -4,7 +4,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>T</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SerBermz</b> 2020</span>
+      <span class="logo-lg"><b>PayRoll</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
