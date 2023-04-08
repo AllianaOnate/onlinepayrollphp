@@ -1,3 +1,10 @@
 ADMIN:
 Username: onatealliana
 Password: admin
+
+EMPLOYEES:
+Username: emp_onate
+Password: admin
+
+Username: emp_moron
+Password: admin
