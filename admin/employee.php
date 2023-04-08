@@ -50,7 +50,7 @@
                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
                   <th>Employee ID</th>
                   <th>Photo</th>
