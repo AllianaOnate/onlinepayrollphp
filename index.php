@@ -23,7 +23,8 @@
       		</div>
       		<div class="row">
     			<div class="col-xs-4">
-                <name="login"><i class="fa fa-log-in"></i> <a href="http://localhost/onlinepayrollphp/admin/">Login Page</a></>
+                <name="login"><i class="fa fa-log-in"></i> <a href="http://localhost/onlinepayrollphp/admin/">Admin</a></>
+                <name="login"><i class="fa fa-log-in"></i> <a href="http://localhost/onlinepayrollphp/employee/">Employee</a></>
           			<button type="submit" class="btn btn-primary btn-block btn-flat" name="signin"><i class="fa fa-sign-in"></i> Sign In</button>
         		</div>
       		</div>
