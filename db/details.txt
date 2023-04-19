@@ -7,4 +7,8 @@ Username: emp_onate
 Password: admin
 
 Username: emp_moron
+<<<<<<< HEAD
 Password: admin
+=======
+Password: admin
+>>>>>>> 71618e9311cafe1644dd2ddae6bc78ca7e1307b8
