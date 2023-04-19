@@ -5,7 +5,7 @@
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple-light sidebar-mini">
 <div class="wrapper">
 
   <?php include 'includes/navbar.php'; ?>
@@ -88,8 +88,8 @@
 
                     $query = $conn->query($sql);
                     $total = 0;
-                    while($row = $query->fetch_assoc()){
-                      $empid = $row['empid'];
+                    while($user = $query->fetch_assoc()){
+                      $empid = $user['empid'];
                       
                       $casql = "SELECT *, SUM(amount) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
                       
@@ -97,14 +97,14 @@
                       $carow = $caquery->fetch_assoc();
                       $cashadvance = $carow['cashamount'];
 
-                      $gross = $row['rate'] * $row['total_hr'];
+                      $gross = $user['rate'] * $user['total_hr'];
                       $total_deduction = $deduction + $cashadvance;
                       $net = $gross - $total_deduction;
 
                       echo "
                         <tr>
-                          <td>".$row['lastname'].", ".$row['firstname']."</td>
-                          <td>".$row['employee_id']."</td>
+                          <td>".$user['lastname'].", ".$user['firstname']."</td>
+                          <td>".$user['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
                           <td>".number_format($cashadvance, 2)."</td>
