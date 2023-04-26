@@ -90,7 +90,7 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
+
   <?php include 'includes/employee_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>

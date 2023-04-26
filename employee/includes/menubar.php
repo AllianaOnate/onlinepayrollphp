@@ -16,8 +16,9 @@
         <li class="header">REPORTS</li>
         <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="header">MENU</li>
-        
+        <li><a href="deduction.php"><i class="fa fa-files-o"></i> <span>Deduction</span></a></li>
         <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payroll</span></a></li>
+        
       </ul>
     </section>
     <!-- /.sidebar -->

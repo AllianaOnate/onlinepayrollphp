@@ -80,8 +80,7 @@
       </div>
     </section>   
   </div>
-    
-  <?php include 'includes/footer.php'; ?>
+
   <?php include 'includes/position_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>

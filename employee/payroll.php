@@ -5,7 +5,7 @@
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-purple-light sidebar-mini">
+<body class="hold-transition skin-purple-light ">
 <div class="wrapper">
 
   <?php include 'includes/navbar.php'; ?>
@@ -36,6 +36,7 @@
           ";
           unset($_SESSION['error']);
         }
+        
         if(isset($_SESSION['success'])){
           echo "
             <div class='alert alert-success alert-dismissible'>
@@ -56,10 +57,11 @@
                 </form>
               </div>
             </div>
+            
             <div class="box-body">
-              <table id="example2" class="table table-bordered">
+              <table id="id" class="table table-bordered">
                 <thead>
-                  <th>Employee Name</th>
+                  
                   <th>Employee ID</th>
                   <th>Gross</th>
                   <th>Deductions</th>
@@ -68,6 +70,8 @@
                 </thead>
                 <tbody>
                   <?php
+                    
+
                     $sql = "SELECT *, SUM(amount) as total_amount FROM deductions";
                     $query = $conn->query($sql);
                     $drow = $query->fetch_assoc();
@@ -103,7 +107,7 @@
 
                       echo "
                         <tr>
-                          <td>".$user['lastname'].", ".$user['firstname']."</td>
+                          
                           <td>".$user['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
@@ -122,8 +126,7 @@
       </div>
     </section>   
   </div>
-    
-  <?php include 'includes/footer.php'; ?>
+
 </div>
 <?php include 'includes/scripts.php'; ?> 
 <script>

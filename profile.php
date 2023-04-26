@@ -328,10 +328,6 @@ if ( !isset($_SESSION['Admin_ID']) || !isset($_SESSION['Login_Type']) ) {
 				</div>
 			</section>
 		</div>
-
-		<footer class="main-footer">
-		<strong> &copy; <?php echo date("Y");?> Payroll Management System | </strong> by Onate, Moron & Dico
-		</footer>
 	</div>
 
 	<script src="<?php echo BASE_URL; ?>plugins/jQuery/jquery-2.2.3.min.js"></script>

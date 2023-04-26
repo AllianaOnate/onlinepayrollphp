@@ -18,8 +18,8 @@
             </select>
           </div>
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control input-lg" id="employee" name="employee" required>
-        		<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+        		<input type="text" placeholder= "ID" class="form-control input-lg" id="employee" name="employee" required>
+        		<span class="glyphicon glyphicon-user form-control-feedback"></span>
       		</div>
       		<div class="row">
     			<div class="col-xs-4">
@@ -38,6 +38,21 @@
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <span class="result"><i class="icon fa fa-warning"></i> <span class="message"></span></span>
     </div>
+
+    <body>
+      <div class="background-img"></div>
+
+    </body>
+
+    <style>
+      .background-img {
+        background-img: url('./images/logo_bg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 200px;
+        height: 200px;
+      }
+    </style>
   		
 </div>
 	

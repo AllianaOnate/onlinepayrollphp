@@ -81,7 +81,6 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
   <?php include 'includes/deduction_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>

@@ -47,13 +47,12 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+               
             </div>
             <div class="box-body">
               <table id="example2" class="table table-bordered">
                 <thead>
-                  <th>Employee ID</th>
-                  <th>Photo</th>
+                  
                   <th>Name</th>
                   <th>Position</th>
                   <th>Schedule</th>
@@ -67,8 +66,7 @@
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
-                          <td><?php echo $row['employee_id']; ?></td>
-                          <td><img src="<?php echo (!empty($row['photo']))? '../images/'.$row['photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['empid']; ?>"><span class="fa fa-edit"></span></a></td>
+                          
                           <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
                           <td><?php echo $row['description']; ?></td>
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>

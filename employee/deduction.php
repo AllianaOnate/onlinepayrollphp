@@ -46,14 +46,14 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
+              
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
                   <th>Description</th>
                   <th>Amount</th>
-                  <th>Tools</th>
+                  
                 </thead>
                 <tbody>
                   <?php
@@ -64,10 +64,7 @@
                         <tr>
                           <td>".$row['description']."</td>
                           <td>".number_format($row['amount'], 2)."</td>
-                          <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
-                          </td>
+                          
                         </tr>
                       ";
                     }
@@ -81,7 +78,7 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
+ 
   <?php include 'includes/deduction_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>

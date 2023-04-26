@@ -24,7 +24,7 @@
 		
 	}
 	else{
-		$_SESSION['error'] = 'Input admin credentials first';
+		$_SESSION['error'] = 'Input employee credentials first';
 	}
 
 	header('location: employee.php');
