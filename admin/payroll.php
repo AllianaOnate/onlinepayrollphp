@@ -74,7 +74,7 @@
   
                     
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-1 day', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];

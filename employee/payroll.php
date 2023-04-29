@@ -79,7 +79,7 @@
   
                     
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-7 day', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
@@ -88,14 +88,20 @@
                       $to = date('Y-m-d', strtotime($ex[1]));
                     }
 
-                    $sql = "SELECT *, SUM(num_hr) AS total_hr, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
+                    $sql = "SELECT *, SUM(num_hr) AS total_hr
+                    FROM attendance
+                    LEFT JOIN employees ON employees.id = attendance.employee_id
+                    LEFT JOIN position ON position.id = employees.position_id
+                    WHERE attendance.employee_id = '{$_SESSION['employees']}' AND date BETWEEN '$from' AND '$to'
+                    GROUP BY attendance.employee_id
+                    ORDER BY employees.lastname ASC, employees.firstname ASC";
 
                     $query = $conn->query($sql);
                     $total = 0;
                     while($user = $query->fetch_assoc()){
-                      $empid = $user['empid'];
+                      $employee_id = $user['employee_id'];
                       
-                      $casql = "SELECT *, SUM(amount) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
+                      $casql = "SELECT *, SUM(amount) AS cashamount FROM cashadvance WHERE employee_id='$employee_id' AND date_advance BETWEEN '$from' AND '$to'";
                       
                       $caquery = $conn->query($casql);
                       $carow = $caquery->fetch_assoc();
@@ -168,7 +174,7 @@ function getRow(id){
   $.ajax({
     type: 'POST',
     url: 'position_row.php',
-    data: {id:id},
+    data: {employee_id:id},
     dataType: 'json',
     success: function(response){
       $('#posid').val(response.id);

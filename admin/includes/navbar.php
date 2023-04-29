@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>W&R</b></span>
+      <span class="logo-mini"><img src="../images/logo_square.png" height="50"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>W&R PayRoll</b></span>
+      <span class="logo-lg"><img src="../images/logo.png" height="50"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -12,6 +12,7 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
@@ -32,10 +33,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#profile" data-toggle="modal" class="btn btn-secondary btn-sm btn-flat" style='background-color: #ffd9b3;' id="admin_profile"><b style='color: Black'><strong>Update</strong></a>
+                  <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Update</a>
                 </div>
-                <div class="pull-left">
-                  <a href="logout.php" class="btn btn-secondary btn-sm btn-flat" style='background-color: #CCFFCC;' ><b style='color: Black'><strong>Sign out</strong></a>
+                <div class="pull-right">
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
