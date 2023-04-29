@@ -3,6 +3,7 @@
 
 	if(isset($_POST['edit'])){
 		$empid = $_POST['id'];
+		$username = $_POST['username'];
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$address = $_POST['address'];
@@ -12,9 +13,9 @@
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
 		
-		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE id = '$empid'";
+		$sql = "UPDATE employees SET username = '$username', firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE id = '$empid'";
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Employee updated successfully';
+			$_SESSION['success'] = 'Employee information updated successfully';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

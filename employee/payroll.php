@@ -61,8 +61,6 @@
             <div class="box-body">
               <table id="id" class="table table-bordered">
                 <thead>
-                  
-                  <th>Employee ID</th>
                   <th>Gross</th>
                   <th>Deductions</th>
                   <th>Cash Advance</th>
@@ -79,7 +77,7 @@
   
                     
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-7 day', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
@@ -113,8 +111,6 @@
 
                       echo "
                         <tr>
-                          
-                          <td>".$user['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
                           <td>".number_format($cashadvance, 2)."</td>

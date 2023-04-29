@@ -9,7 +9,14 @@
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data">
-          		  <div class="form-group">
+                <div class="form-group">
+                  	<label for="username" class="col-sm-3 control-label">Username</label>
+
+                  	<div class="col-sm-9">
+                    	<input type="text" class="form-control" id="username" name="username" required>
+                  	</div>
+                </div>
+                <div class="form-group">
                   	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
                   	<div class="col-sm-9">
@@ -122,6 +129,13 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="employee_edit.php">
             		<input type="hidden" class="empid" name="id">
+                <div class="form-group">
+                    <label for="edit_username" class="col-sm-3 control-label">Username</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_username" name="username">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Firstname</label>
 

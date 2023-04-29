@@ -54,6 +54,7 @@
                 <thead>
                   <th>Employee ID</th>
                   <th>Photo</th>
+                  <th>Username</th>
                   <th>Name</th>
                   <th>Position</th>
                   <th>Schedule</th>
@@ -69,6 +70,7 @@
                         <tr>
                           <td><?php echo $row['employee_id']; ?></td>
                           <td><img src="<?php echo (!empty($row['photo']))? '../images/'.$row['photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['empid']; ?>"><span class="fa fa-edit"></span></a></td>
+                          <td><?php echo $row['username']; ?></td>
                           <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
                           <td><?php echo $row['description']; ?></td>
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
