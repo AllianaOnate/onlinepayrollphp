@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['admin'])){
+  if(isset($_SESSION['employee'])){
     header('location:home.php');
   }
 ?>

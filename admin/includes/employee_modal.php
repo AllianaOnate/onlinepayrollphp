@@ -15,7 +15,7 @@
                   	<div class="col-sm-9">
                     	<input type="text" class="form-control" id="username" name="username" required>
                   	</div>
-                </div>
+                </div>                
                 <div class="form-group">
                   	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
@@ -136,6 +136,7 @@
                       <input type="text" class="form-control" id="edit_username" name="username">
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Firstname</label>
 

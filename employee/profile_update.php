@@ -32,9 +32,9 @@
 				$password = password_hash($password, PASSWORD_DEFAULT);
 			}
 
-			$sql = "UPDATE admin SET username = '$username', password = '$password', firstname = '$firstname', lastname = '$lastname', photo = '$filename' WHERE id = '".$user['id']."'";
+			$sql = "UPDATE employees SET username = '$username', password = '$password', firstname = '$firstname', lastname = '$lastname', photo = '$filename' WHERE id = '".$user['id']."'";
 			if($conn->query($sql)){
-				$_SESSION['success'] = 'Admin profile updated successfully';
+				$_SESSION['success'] = 'Profile updated successfully';
 			}
 			else{
 				$_SESSION['error'] = $conn->error;
