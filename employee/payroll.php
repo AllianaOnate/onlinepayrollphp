@@ -59,7 +59,7 @@
             </div>
             
             <div class="box-body">
-              <table id="id" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
                   <th>Gross</th>
                   <th>Deductions</th>
@@ -100,7 +100,9 @@
                     while($user = $query->fetch_assoc()){
                       $employee_id = $user['employee_id'];
                       
-                      $casql = "SELECT *, SUM(amount) AS cashamount FROM cashadvance WHERE employee_id='$employee_id' AND date_advance BETWEEN '$from' AND '$to'";
+                      $casql = "SELECT *, SUM(amount) AS cashamount 
+                      FROM cashadvance 
+                      WHERE employee_id = '{$_SESSION['employees']}' AND date_advance BETWEEN '$from' AND '$to'";
                       
                       $caquery = $conn->query($casql);
                       $carow = $caquery->fetch_assoc();

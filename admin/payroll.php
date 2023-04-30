@@ -83,6 +83,8 @@
                       $to = date('Y-m-d', strtotime($ex[1]));
                     }
 
+                    
+
                     $sql = "SELECT *, SUM(num_hr) AS total_hr, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
 
                     $query = $conn->query($sql);
@@ -90,7 +92,9 @@
                     while($row = $query->fetch_assoc()){
                       $empid = $row['empid'];
                       
-                      $casql = "SELECT *, SUM(amount) AS cashamount FROM cashadvance WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
+                      $casql = "SELECT *, SUM(amount) AS cashamount 
+                      FROM cashadvance 
+                      WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
                       
                       $caquery = $conn->query($casql);
                       $carow = $caquery->fetch_assoc();
@@ -106,8 +110,10 @@
                           <td>".$row['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
+                          
                           <td>".number_format($cashadvance, 2)."</td>
                           <td>".number_format($net, 2)."</td>
+                          
                         </tr>
                       ";
                     }
