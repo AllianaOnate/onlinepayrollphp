@@ -63,14 +63,21 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, overtime.id AS otid, overtime.hours AS num_hour, overtime.rate AS per_rate, employees.employee_id AS empid FROM overtime LEFT JOIN employees ON employees.id=overtime.employee_id ORDER BY date_overtime DESC";
+                    $sql = "SELECT *, overtime.id AS otid, 
+                    overtime.hours AS num_hour, 
+                    overtime.rate AS per_rate, 
+                    employees.employee_id AS empid 
+                    FROM overtime 
+                    LEFT JOIN employees ON employees.id=overtime.employee_id 
+                    ORDER BY date_overtime DESC";
+                    
                     $query = $conn->query($sql);
                     
                     while($row = $query->fetch_assoc()){
                       $rate = $row['per_rate'];
                       $hour = $row['num_hour'];
-
-                      $total_ot = $rate * $hour;
+                      
+                      $ot_amount = $rate * $hour;
 
                       echo "
                         <tr>
@@ -80,7 +87,7 @@
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
                           <td>".number_format($hour, 4)."</td>
                           <td>".$row['rate']."</td>
-                          <td>".number_format($total_ot, 2)."</td>
+                          <td>".number_format($ot_amount, 2)."</td>
                           <td>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['otid']."'><i class='fa fa-edit'></i> Edit</button>
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['otid']."'><i class='fa fa-trash'></i> Delete</button>
