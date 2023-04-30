@@ -2,10 +2,10 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['delete'])){
-		$row = $_POST['id'];
-		$sql = "DELETE FROM payroll WHERE id = '$row'";
+		$id = $_POST['id'];
+		$sql = "DELETE FROM payroll WHERE id = '$id'";
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Position deleted successfully';
+			$_SESSION['success'] = 'Payroll deleted successfully';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

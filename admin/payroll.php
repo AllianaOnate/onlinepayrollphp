@@ -52,7 +52,16 @@
           <div class="box">
             <div class="box-header with-border">
               <div class="pull-right">
-                
+              <form method="POST" class="form-inline" id="payForm">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
+                  </div>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll"><span class="glyphicon glyphicon-print"></span> Payroll</button>
+                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip"><span class="glyphicon glyphicon-print"></span> Payslip</button>
+                </form>
               </div>
             </div>
             <div class="box-body">
@@ -61,9 +70,12 @@
                   <th>Employee Name</th>
                   <th>Employee ID</th>
                   <th>Gross</th>
+                  <th>Per Day</th>
                   <th>Deductions</th>
                   <th>Cash Advance</th>
                   <th>Net Pay</th>
+                  <th>13h month pay</th>
+                  
                 </thead>
                 <tbody>
                   <?php
@@ -74,7 +86,7 @@
   
                     
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-1 day', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
@@ -103,16 +115,19 @@
                       $gross = $row['rate'] * $row['total_hr'];
                       $total_deduction = $deduction + $cashadvance;
                       $net = $gross - $total_deduction;
+                      $perday = $row['rate'] * 8;
+                      $decpay = $perday * 22.5 * 12 / 12;
 
                       echo "
                         <tr>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".$row['employee_id']."</td>
                           <td>".number_format($gross, 2)."</td>
+                          <td>".number_format($perday, 2)."</td>
                           <td>".number_format($deduction, 2)."</td>
-                          
                           <td>".number_format($cashadvance, 2)."</td>
                           <td>".number_format($net, 2)."</td>
+                          <td>".number_format($decpay, 2)."</td>
                           
                         </tr>
                       ";
@@ -128,6 +143,8 @@
     </section>   
   </div>
     
+  <?php include 'includes/payroll_modal.php'; ?>
+
 
 </div>
 <?php include 'includes/scripts.php'; ?> 
@@ -169,7 +186,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'position_row.php',
+    url: 'payroll_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
@@ -178,6 +195,10 @@ function getRow(id){
       $('#edit_rate').val(response.rate);
       $('#del_posid').val(response.id);
       $('#del_position').html(response.description);
+      $('#attid').val(response.attid);
+      $('#employee_name').html(response.firstname+' '+response.lastname);
+      $('#del_attid').val(response.attid);
+      $('#del_employee_name').html(response.firstname+' '+response.lastname);
     }
   });
 }
