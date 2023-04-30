@@ -179,7 +179,7 @@
                     <p>Click here for <a href="http://localhost/onlinepayrollphp/admin">Admin Login</a>.</p>    
                 </div>
           <div class="employee-login-btn">
-            <p>Click here for <a href="http://localhost/onlinepayrollphp/">Employee Login</a>.</p>  
+            <p>Click here for <a href="http://localhost/onlinepayrollphp/employee/">Employee Login</a>.</p>  
           </div>
 
 

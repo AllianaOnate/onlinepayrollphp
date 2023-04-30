@@ -50,10 +50,8 @@
             <div class="box-body">
               <table id="example2" class="table table-bordered">
                 <thead>
-                  <th>Employee ID</th>
                   <th>Name</th>
                   <th>Schedule</th>
-                  <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
@@ -62,13 +60,8 @@
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
-                          <td>".$row['employee_id']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
                           <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out']))."</td>
-                          <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['empid']."'><i class='fa fa-edit'></i> Edit</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['empid']."'><i class='fa fa-trash'></i> Delete</button>
-                          </td>
                         </tr>
                       ";
                     }
