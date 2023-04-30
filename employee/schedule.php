@@ -55,7 +55,8 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN schedules ON schedules.id=employees.schedule_id";
+                    $employee_id = $_SESSION['employees'];
+                    $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN schedules ON schedules.id=employees.schedule_id WHERE employees.id = $employee_id";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
                       echo "

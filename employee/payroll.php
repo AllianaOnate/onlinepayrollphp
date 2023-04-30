@@ -65,6 +65,7 @@
                   <th>Deductions</th>
                   <th>Cash Advance</th>
                   <th>Net Pay</th>
+                  
                 </thead>
                 <tbody>
                   <?php
