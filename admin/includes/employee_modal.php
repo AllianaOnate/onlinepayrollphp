@@ -63,6 +63,18 @@
                         <option value="Female">Female</option>
                       </select>
                     </div>
+                    
+                    </div>
+                <div class="form-group">
+                    <label for="status" class="col-sm-3 control-label">Status</label>
+
+                    <div class="col-sm-9"> 
+                      <select class="form-control" name="status" id="status" required>
+                        <option value="" selected>- Select -</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                      </select>
+                      </div>
                 </div>
                 <div class="form-group">
                     <label for="position" class="col-sm-3 control-label">Position</label>
@@ -106,7 +118,7 @@
                     <div class="col-sm-9">
                       <input type="file" name="photo" id="photo">
                     </div>
-                </div>
+              
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -184,6 +196,18 @@
                         <option value="Female">Female</option>
                       </select>
                     </div>
+                
+                </div>
+                <div class="form-group">
+                    <label for="edit_status" class="col-sm-3 control-label">Status</label>
+
+                    <div class="col-sm-9"> 
+                      <select class="form-control" name="status" id="edit_status">
+                        <option selected id="status_val"></option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                      </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_position" class="col-sm-3 control-label">Position</label>
@@ -220,7 +244,7 @@
                         ?>
                       </select>
                     </div>
-                </div>
+        
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>

@@ -10,6 +10,7 @@
 		$birthdate = $_POST['birthdate'];
 		$contact = $_POST['contact'];
 		$gender = $_POST['gender'];
+		$status = $_POST['status'];
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
 		$filename = $_FILES['photo']['name'];
@@ -27,7 +28,7 @@
 		
 		$employee_id = substr(str_shuffle($numbers), 0, 6);
 	
-		$sql = "INSERT INTO employees (employee_id, username, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$username', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
+		$sql = "INSERT INTO employees (employee_id, username, firstname, lastname, address, birthdate, contact_info, gender, status, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$username', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$status', '$position', '$schedule', '$filename', NOW())";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Employee added successfully';
 		}

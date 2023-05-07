@@ -59,6 +59,7 @@
                   <th>Position</th>
                   <th>Schedule</th>
                   <th>Member Since</th>
+                  <th>Status</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
@@ -76,6 +77,7 @@
                           <td><?php echo $row['description']; ?></td>
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
                           <td><?php echo date('M d, Y', strtotime($row['created_on'])) ?></td>
+                          <td><?php echo $row['status']; ?></td>
                           <td>
                             <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-edit"></i> Edit</button>
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-trash"></i> Delete</button>
