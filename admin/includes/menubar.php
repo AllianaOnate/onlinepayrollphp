@@ -33,7 +33,6 @@
             <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
           </ul>
         </li>
-        
         <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deduction</span></a></li>
         <li><a href="position.php"><i class="fa fa-suitcase"></i> <span>Positions</span></li>
         <li class="header">OTHERS</li>
