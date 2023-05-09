@@ -54,17 +54,14 @@
                 <thead>
                   <th>Employee ID</th>
                   <th>Photo</th>
-                  <th>Username</th>
                   <th>Name</th>
                   <th>Position</th>
                   <th>Schedule</th>
                   <th>Member Since</th>
-                  <th>Status</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
                   <?php
-                    
                     $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
@@ -72,12 +69,10 @@
                         <tr>
                           <td><?php echo $row['employee_id']; ?></td>
                           <td><img src="<?php echo (!empty($row['photo']))? '../images/'.$row['photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['empid']; ?>"><span class="fa fa-edit"></span></a></td>
-                          <td><?php echo $row['username']; ?></td>
                           <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
                           <td><?php echo $row['description']; ?></td>
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
                           <td><?php echo date('M d, Y', strtotime($row['created_on'])) ?></td>
-                          <td><?php echo $row['status']; ?></td>
                           <td>
                             <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-edit"></i> Edit</button>
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-trash"></i> Delete</button>
