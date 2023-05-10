@@ -10,11 +10,14 @@
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find account with the username';
+			$_SESSION['error'] = 'Cannot find an account with the username';
 		}
 		else{
 			$row = $query->fetch_assoc();
-			if(password_verify($password, $row['password'])){
+			if($row['status'] == '1') {
+				$_SESSION['error'];
+			}
+			else if(password_verify($password, $row['password'])){
 				$_SESSION['employees'] = $row['id'];
 			}
 			else{
@@ -28,5 +31,4 @@
 	}
 
 	header('location: employee.php');
-
 ?>
