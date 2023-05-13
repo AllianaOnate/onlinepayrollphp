@@ -48,7 +48,7 @@
           <div class="box">
             
             <div class="box-body">
-              <table id="example2" class="table table-bordered">
+              <table id="example" class="table table-bordered">
                 <thead>
                   <th>Name</th>
                   <th>Schedule</th>

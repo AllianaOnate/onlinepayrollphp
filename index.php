@@ -29,7 +29,7 @@
         position: relative;
         width: 400px;
         height: 450px;
-        background: #c19adf;
+        background: transparent;
         border: 2px solid #fff;
         border-radius: 20px;
         backdrop-filter: blur(15px);

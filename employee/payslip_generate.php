@@ -47,7 +47,7 @@
 		$total_deduction = $deduction + $cashadvance;
   		$net = $gross - $total_deduction;
 
-		$contents .= '
+		$content .= '
 			<h2 align="center">TechSoft IT Solutions</h2>
 			<h4 align="center">'.$from_title." - ".$to_title.'</h4>
 			<table cellspacing="0" cellpadding="3">  
@@ -97,7 +97,7 @@
     	    <br><hr>
 		';
 	}
-    $pdf->writeHTML($contents);  
+    $pdf->writeHTML($content);  
     $pdf->Output('payslip.pdf', 'I');
 
 ?>

@@ -2,7 +2,7 @@
 <?php
   include '../timezone.php';
   $range_to = date('m/d/Y');
-  $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
+  $range_from = date('m/d/Y', strtotime('-26 day', strtotime($range_to)));
 ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-purple-light sidebar-mini">
@@ -65,10 +65,10 @@
               </div>
             </div>
             <div class="box-body">
-              <table id="example2" class="table table-bordered">
+              <table id="example" class="table table-bordered">
                 <thead>
-                  <th>Employee Name</th>
                   <th>Employee ID</th>
+                  <th>Employee Name</th>
                   <th>Gross</th>
                   <th>Per Day</th>
                   <th>Deductions</th>
@@ -79,14 +79,14 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, SUM(amount) as total_amount FROM deductions";
-                    $query = $conn->query($sql);
-                    $drow = $query->fetch_assoc();
-                    $deduction = $drow['total_amount'];
+                    // $sql = "SELECT *, SUM(amount) as total_amount FROM deductions";
+                    // $query = $conn->query($sql);
+                    // $drow = $query->fetch_assoc();
+                    // $deduction = $drow['total_amount'];
   
                     
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-26 day', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
@@ -113,18 +113,39 @@
                       $cashadvance = $carow['cashamount'];
 
                       $gross = $row['rate'] * $row['total_hr'];
-                      $total_deduction = $deduction + $cashadvance;
-                      $net = $gross - $total_deduction;
                       $perday = $row['rate'] * 8;
+                      $monthly_salary = $perday * 26;
+
+                      // Deductions SSS PAGIBIG PHILHEALTH
+                      //SSS
+                      $sss = $monthly_salary * 0.045;
+                      
+                      //PAGIBIG
+                      if ($monthly_salary >= 5000){
+                        $pagibig = $monthly_salary * 0.03;
+                      }
+                      else {
+                        $pagibig = $monthly_salary * 0.02;
+                      }
+                      
+                      // PHILHEALTH
+                      $philhealth = $monthly_salary * 0.045;
+
+                      //TOTAL DEDUCTIONS
+                      $total_deduction = $sss + $pagibig + $philhealth;
+
+                      $net = $gross - $total_deduction;
+                      
+                      //13TH MONTH PAY
                       $decpay = $perday * 22.5 * 12 / 12;
 
                       echo "
                         <tr>
-                          <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".$row['employee_id']."</td>
+                          <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($perday, 2)."</td>
-                          <td>".number_format($deduction, 2)."</td>
+                          <td>".number_format($total_deduction, 2)."</td>
                           <td>".number_format($cashadvance, 2)."</td>
                           <td>".number_format($net, 2)."</td>
                           <td>".number_format($decpay, 2)."</td>

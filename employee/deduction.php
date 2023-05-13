@@ -49,7 +49,7 @@
               
             </div>
             <div class="box-body">
-              <table id="example2" class="table table-bordered">
+              <table id="example" class="table table-bordered">
                 <thead>
                   <th>Description</th>
                   <th>Amount</th>
