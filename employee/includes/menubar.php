@@ -17,8 +17,8 @@
         <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="header">VIEW</li>
         <li><a href="schedule.php"><i class="fa fa-clock-o"></i> <span>Schedule</span></a></li>
-        <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deduction</span></a></li>
-        <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payslip</span></a></li>
+        
+        <li><a href="payslip.php"><i class="fa fa-files-o"></i> <span>Payslip</span></a></li>
         
         
       </ul>

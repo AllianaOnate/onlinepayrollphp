@@ -132,7 +132,7 @@
                       $philhealth = $monthly_salary * 0.045;
 
                       //TOTAL DEDUCTIONS
-                      $total_deduction = $sss + $pagibig + $philhealth;
+                      $total_deduction = $sss + $pagibig + $philhealth + $cashadvance;
 
                       $net = $gross - $total_deduction;
                       

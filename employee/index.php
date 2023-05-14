@@ -139,7 +139,7 @@
                 <label>Username</label>
             </div>
             <div class="form-group has-feedback">
-                <ion-icon name="lock-closed-outline"></ion-icon>
+                <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
                 <input type="password" class="form-control" name="password" required>
                 <label>Password</label>
             </div>
