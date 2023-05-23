@@ -34,6 +34,16 @@
       border: 3px solid black;
       padding: 10px;
     }
+    .export-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    }
+
   </style>
 </head>
 <body class="hold-transition skin-purple-light">
@@ -147,7 +157,8 @@
           </tbody>
         </table>
       </div>
-      <button id="exportButton">Export as PDF</button>
+      <button id="exportButton" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; margin-top: 10px;">Export as PDF</button>
+
     </section>
   </div>
   <?php include 'includes/scripts.php'; ?>
@@ -156,6 +167,7 @@
   <script>
     
   document.getElementById("exportButton").addEventListener("click", function() {
+    document.getElementById("exportButton").style.display = "none";
     var content = document.querySelector(".content-wrapper");
     html2canvas(content).then(function(canvas) {
       var imgData = canvas.toDataURL("image/jpeg", 1.0);
@@ -171,7 +183,9 @@
       };
 
       // Generate the PDF and initiate download
-      pdfMake.createPdf(docDefinition).download("exported_content.pdf");
+      pdfMake.createPdf(docDefinition).download("gmc_payslip.pdf");
+
+      document.getElementById("exportButton").style.display = "block";
     });
   });
 </script>
