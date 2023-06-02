@@ -172,6 +172,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     <th><?php echo number_format($total_deductions, 2); ?></th>
                     <th><?php echo number_format($total_net_pay, 2); ?></th>
                     <th></th>
