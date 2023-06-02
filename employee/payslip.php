@@ -4,10 +4,6 @@
   <title>PDF Export Button</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
   <style type="text/css">
     table {
       text-align: center;
@@ -15,7 +11,7 @@
       border: 3px solid black;
       padding: 10px;
     }
-    th{
+    th {
       text-align: center;
       border: 3px solid black;
       padding: 10px;
@@ -25,7 +21,7 @@
       border: 3px solid black;
       padding: 10px;
     }
-    h1{
+    h1 {
       font-size: 3em;
       text-align: center;
     }
@@ -35,15 +31,14 @@
       padding: 10px;
     }
     .export-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
     }
-
   </style>
 </head>
 <body class="hold-transition skin-purple-light">
@@ -60,11 +55,25 @@
   <div class="content-wrapper">
     <section class="content-header">
       <p></p>
-      </ol>
     </section>
     <section class="content">
       <h1>GMC Employee Payslip</h1>
       <div class="box-body">
+        <div class="box-header with-border">
+          <div class="pull-right">
+            <form method="POST" class="form-inline" id="payForm">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <?php
+                  $date_range = (isset($_GET['range'])) ? $_GET['range'] : $range_from . ' - ' . $range_to;
+                  echo '<input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="' . $date_range . '">';
+                ?>
+              </div>
+            </form>
+          </div>
+        </div>
         <table id="example" class="table table-bordered" style="border:3px solid black">
           <p><strong> ID No: <?php echo $user['employee_id'].' '; ?></p>
           <p><strong> Name: <?php echo $user['firstname'].' '.$user['lastname']; ?></p>
@@ -165,29 +174,35 @@
   
 
   <script>
-    
-  document.getElementById("exportButton").addEventListener("click", function() {
-    document.getElementById("exportButton").style.display = "none";
-    var content = document.querySelector(".content-wrapper");
-    html2canvas(content).then(function(canvas) {
-      var imgData = canvas.toDataURL("image/jpeg", 1.0);
-      
-      // Create a new PDF document
-      var docDefinition = {
-        content: [
-          {
-            image: imgData,
-            width: 500,
-          },
-        ],
-      };
+    document.getElementById("exportButton").addEventListener("click", function() {
+      document.getElementById("exportButton").style.display = "none";
+      var content = document.querySelector(".content-wrapper");
+      html2canvas(content).then(function(canvas) {
+        var imgData = canvas.toDataURL("image/jpeg", 1.0);
+        
+        // Create a new PDF document
+        var docDefinition = {
+          content: [
+            {
+              image: imgData,
+              width: 500,
+            },
+          ],
+        };
 
-      // Generate the PDF and initiate download
-      pdfMake.createPdf(docDefinition).download("gmc_payslip.pdf");
+        // Generate the PDF and initiate download
+        pdfMake.createPdf(docDefinition).download("gmc_payslip.pdf");
 
-      document.getElementById("exportButton").style.display = "block";
+        document.getElementById("exportButton").style.display = "block";
+      });
     });
-  });
+
+    document.getElementById("reservation").addEventListener("change", function() {
+      var range = document.getElementById("reservation").value;
+      window.location.href = "yourpage.php?range=" + range;
+    });
+  </script>
+
 </script>
 
 </div>

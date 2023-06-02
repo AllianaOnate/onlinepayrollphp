@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-</head>
-
 <?php include 'includes/session.php'; ?>
 <?php
   include '../timezone.php';
@@ -59,23 +48,20 @@
         }
       ?>
       <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <div class="pull-right">
-                                    <form method="POST" class="form-inline" id="payForm">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from . ' - ' . $range_to; ?>">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="pull-left">
-                                    <button class="btn btn-default" id="exportPDF"><i class="fa fa-file-pdf-o"></i> Export PDF</button>
-                                </div>
-                            </div>
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <div class="pull-right">
+                <form method="POST" class="form-inline" id="payForm">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
+                  </div>
+                </form>
+              </div>
+            </div>
             <div class="box-body">
               <table id="example" class="table table-bordered">
                 <thead>
@@ -238,9 +224,7 @@ $(function(){
     $('#payForm').submit();
   });
 
-  
 });
-
 
 function getRow(id){
   $.ajax({
@@ -259,29 +243,6 @@ function getRow(id){
       $('#del_attid').val(response.attid);
       $('#del_employee_name').html(response.firstname+' '+response.lastname);
     }
-
-    document.getElementById("exportButton").addEventListener("click", function() {
-    document.getElementById("exportButton").style.display = "none";
-    var content = document.querySelector(".content-wrapper");
-    html2canvas(content).then(function(canvas) {
-      var imgData = canvas.toDataURL("image/jpeg", 1.0);
-
-      // Create a new PDF document
-      var docDefinition = {
-        content: [
-          {
-            image: imgData,
-            width: 500,
-          },
-        ],
-      };
-
-      // Generate the PDF and initiate download
-      pdfMake.createPdf(docDefinition).download("payroll.pdf");
-
-      document.getElementById("exportButton").style.display = "block";
-    });
-  });
   });
 }
 </script>
