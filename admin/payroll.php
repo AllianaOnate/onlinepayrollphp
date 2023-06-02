@@ -68,6 +68,7 @@
                   <th>Employee ID</th>
                   <th>Employee Name</th>
                   <th>Gross</th>
+                  <th>Work Day</th>
                   <th>Per Day</th>
                   <th>SSS</th>
                   <th>Pag-ibig</th>
@@ -92,6 +93,7 @@
                     $sql = "SELECT *, SUM(num_hr) AS total_hr, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
 
                     $query = $conn->query($sql);
+                    $total_working_days = 0;
                     $total_gross = 0;
                     $total_deductions = 0;
                     $total_net_pay = 0;
@@ -133,6 +135,9 @@
                       // 13TH MONTH PAY
                       $decpay = $perday * 22.5 * 12 / 12;
 
+                      // TOTAL WORK DAYS
+                      $total_working_days += $row['total_hr'] / 8;
+
                       // Calculate totals
                       $total_gross += $gross;
                       $total_deductions += $total_deduction;
@@ -143,6 +148,7 @@
                           <td>".$row['employee_id']."</td>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".number_format($gross, 2)."</td>
+                          <td>".number_format($total_working_days)."</td>
                           <td>".number_format($perday, 2)."</td>
                           <td>".number_format($sss, 2)."</td>
                           <td>".number_format($pagibig, 2)."</td>
@@ -161,7 +167,7 @@
                   <tr>
                     <th colspan="2">Total:</th>
                     <th><?php echo number_format($total_gross, 2); ?></th>
-                    <th></th>
+                    <th><?php echo number_format($total_working_days); ?></th>
                     <th></th>
                     <th></th>
                     <th></th>
