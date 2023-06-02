@@ -32,7 +32,7 @@
             <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
             <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
 
-        <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deduction</span></a></li>
+        <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> <span>Deduction</span></a></li> -->
         <li><a href="position.php"><i class="fa fa-suitcase"></i> <span>Positions</span></li>
         
         <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payroll</span></a></li>

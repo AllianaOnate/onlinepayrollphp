@@ -52,15 +52,13 @@
           <div class="box">
             <div class="box-header with-border">
               <div class="pull-right">
-              <form method="POST" class="form-inline" id="payForm">
+                <form method="POST" class="form-inline" id="payForm">
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
                     <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                   </div>
-                  <!-- <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll"><span class="glyphicon glyphicon-print"></span> Payroll</button>
-                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip"><span class="glyphicon glyphicon-print"></span> Payslip</button> -->
                 </form>
               </div>
             </div>
@@ -71,20 +69,16 @@
                   <th>Employee Name</th>
                   <th>Gross</th>
                   <th>Per Day</th>
-                  <th>Deductions</th>
+                  <th>SSS</th>
+                  <th>Pag-ibig</th>
+                  <th>PhilHealth</th>
                   <th>Cash Advance</th>
+                  <th>Total Deductions</th>
                   <th>Net Pay</th>
-                  <th>13h month pay</th>
-                  
+                  <th>13th Month Pay</th>
                 </thead>
                 <tbody>
                   <?php
-                    // $sql = "SELECT *, SUM(amount) as total_amount FROM deductions";
-                    // $query = $conn->query($sql);
-                    // $drow = $query->fetch_assoc();
-                    // $deduction = $drow['total_amount'];
-  
-                    
                     $to = date('Y-m-d');
                     $from = date('Y-m-d', strtotime('-26 day', strtotime($to)));
 
@@ -95,12 +89,12 @@
                       $to = date('Y-m-d', strtotime($ex[1]));
                     }
 
-                    
-
                     $sql = "SELECT *, SUM(num_hr) AS total_hr, attendance.employee_id AS empid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id LEFT JOIN position ON position.id=employees.position_id WHERE date BETWEEN '$from' AND '$to' GROUP BY attendance.employee_id ORDER BY employees.lastname ASC, employees.firstname ASC";
 
                     $query = $conn->query($sql);
-                    $total = 0;
+                    $total_gross = 0;
+                    $total_deductions = 0;
+                    $total_net_pay = 0;
                     while($row = $query->fetch_assoc()){
                       $empid = $row['empid'];
                       
@@ -117,10 +111,10 @@
                       $monthly_salary = $perday * 26;
 
                       // Deductions SSS PAGIBIG PHILHEALTH
-                      //SSS
+                      // SSS
                       $sss = $monthly_salary * 0.045;
                       
-                      //PAGIBIG
+                      // PAGIBIG
                       if ($monthly_salary >= 5000){
                         $pagibig = $monthly_salary * 0.03;
                       }
@@ -131,13 +125,18 @@
                       // PHILHEALTH
                       $philhealth = $monthly_salary * 0.045;
 
-                      //TOTAL DEDUCTIONS
+                      // TOTAL DEDUCTIONS
                       $total_deduction = $sss + $pagibig + $philhealth + $cashadvance;
 
                       $net = $gross - $total_deduction;
                       
-                      //13TH MONTH PAY
+                      // 13TH MONTH PAY
                       $decpay = $perday * 22.5 * 12 / 12;
+
+                      // Calculate totals
+                      $total_gross += $gross;
+                      $total_deductions += $total_deduction;
+                      $total_net_pay += $net;
 
                       echo "
                         <tr>
@@ -145,17 +144,33 @@
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($perday, 2)."</td>
-                          <td>".number_format($total_deduction, 2)."</td>
+                          <td>".number_format($sss, 2)."</td>
+                          <td>".number_format($pagibig, 2)."</td>
+                          <td>".number_format($philhealth, 2)."</td>
                           <td>".number_format($cashadvance, 2)."</td>
+                          <td>".number_format($total_deduction, 2)."</td>
                           <td>".number_format($net, 2)."</td>
                           <td>".number_format($decpay, 2)."</td>
-                          
                         </tr>
                       ";
                     }
 
                   ?>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="2">Total:</th>
+                    <th><?php echo number_format($total_gross, 2); ?></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><?php echo number_format($total_deductions, 2); ?></th>
+                    <th><?php echo number_format($total_net_pay, 2); ?></th>
+                    <th></th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -223,8 +238,6 @@ function getRow(id){
     }
   });
 }
-
-
 </script>
 </body>
 </html>
