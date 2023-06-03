@@ -13,7 +13,7 @@
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
 		
-		$sql = "UPDATE employees SET username = '$username', firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule', WHERE id = '$empid'";
+		$sql = "UPDATE employees SET username = '$username', firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE id = '$empid'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Employee information updated successfully';
 		}
