@@ -94,6 +94,7 @@
 
                     $query = $conn->query($sql);
                     $total_working_days = 0;
+                    $total_work_days = 0;
                     $total_gross = 0;
                     $total_perday = 0;
                     $total_deductions = 0;
@@ -144,6 +145,7 @@
                       $total_perday += $gross;
                       $total_deductions += $total_deduction;
                       $total_net_pay += $net;
+                      $total_work_days += $total_working_days;
 
                       echo "
                         <tr>
@@ -168,7 +170,7 @@
                 <tfoot>
                   <tr>
                     <th colspan="2">Total:</th>
-                    <th><?php echo number_format($total_working_days,2); ?></th>
+                    <th><?php echo number_format($total_work_days,2); ?></th>
                     <th><?php echo number_format($total_gross,2); ?></th>
                     <th><?php echo number_format($total_perday, 2); ?></th>
                     <th></th>
