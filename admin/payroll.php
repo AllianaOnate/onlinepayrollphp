@@ -67,9 +67,9 @@
                 <thead>
                   <th>Employee ID</th>
                   <th>Employee Name</th>
-                  <th>Gross</th>
                   <th>Work Day</th>
                   <th>Per Day</th>
+                  <th>Gross</th>
                   <th>SSS</th>
                   <th>Pag-ibig</th>
                   <th>PhilHealth</th>
@@ -95,6 +95,7 @@
                     $query = $conn->query($sql);
                     $total_working_days = 0;
                     $total_gross = 0;
+                    $total_perday = 0;
                     $total_deductions = 0;
                     $total_net_pay = 0;
                     while($row = $query->fetch_assoc()){
@@ -139,7 +140,8 @@
                       $total_working_days += $row['total_hr'] / 8;
 
                       // Calculate totals
-                      $total_gross += $gross;
+                      $total_gross += $perday;
+                      $total_perday += $gross;
                       $total_deductions += $total_deduction;
                       $total_net_pay += $net;
 
@@ -147,9 +149,9 @@
                         <tr>
                           <td>".$row['employee_id']."</td>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
-                          <td>".number_format($gross, 2)."</td>
                           <td>".number_format($total_working_days,2)."</td>
                           <td>".number_format($perday, 2)."</td>
+                          <td>".number_format($gross, 2)."</td>
                           <td>".number_format($sss, 2)."</td>
                           <td>".number_format($pagibig, 2)."</td>
                           <td>".number_format($philhealth, 2)."</td>
@@ -166,9 +168,9 @@
                 <tfoot>
                   <tr>
                     <th colspan="2">Total:</th>
-                    <th><?php echo number_format($total_gross, 2); ?></th>
-                    <th><?php echo number_format($total_working_days); ?></th>
-                    <th></th>
+                    <th><?php echo number_format($total_working_days,2); ?></th>
+                    <th><?php echo number_format($total_gross,2); ?></th>
+                    <th><?php echo number_format($total_perday, 2); ?></th>
                     <th></th>
                     <th></th>
                     <th></th>
