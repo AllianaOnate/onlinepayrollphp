@@ -148,7 +148,7 @@
                           <td>".$row['employee_id']."</td>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".number_format($gross, 2)."</td>
-                          <td>".number_format($total_working_days)."</td>
+                          <td>".number_format($total_working_days,2)."</td>
                           <td>".number_format($perday, 2)."</td>
                           <td>".number_format($sss, 2)."</td>
                           <td>".number_format($pagibig, 2)."</td>
