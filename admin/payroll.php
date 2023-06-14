@@ -2,7 +2,7 @@
 <?php
   include '../timezone.php';
   $range_to = date('m/d/Y');
-  $range_from = date('m/d/Y', strtotime('-24 weekdays', strtotime($range_to)));
+  $range_from = date('m/d/Y', strtotime('-26 weekdays', strtotime($range_to)));
 ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-purple-light sidebar-mini">
@@ -82,7 +82,7 @@
                 <tbody>
                   <?php
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-24 weekdays', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-26 weekdays', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
