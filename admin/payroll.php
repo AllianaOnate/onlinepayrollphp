@@ -2,7 +2,7 @@
 <?php
   include '../timezone.php';
   $range_to = date('m/d/Y');
-  $range_from = date('m/d/Y', strtotime('-26 weekdays', strtotime($range_to)));
+  $range_from = date('m/d/Y', strtotime('-24 weekdays', strtotime($range_to)));
 ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-purple-light sidebar-mini">
@@ -67,7 +67,8 @@
                 <thead>
                   <th>Employee ID</th>
                   <th>Employee Name</th>
-                  <th>Work Day</th>
+                  <th>Days Work</th>
+                  <th>Hr Work</th>
                   <th>Per Day</th>
                   <th>Gross</th>
                   <th>SSS</th>
@@ -81,7 +82,7 @@
                 <tbody>
                   <?php
                     $to = date('Y-m-d');
-                    $from = date('Y-m-d', strtotime('-26 weekdays', strtotime($to)));
+                    $from = date('Y-m-d', strtotime('-24 weekdays', strtotime($to)));
 
                     if(isset($_GET['range'])){
                       $range = $_GET['range'];
@@ -99,6 +100,7 @@
                     $total_perday = 0;
                     $total_deductions = 0;
                     $total_net_pay = 0;
+                    $total_hours = 0;
                     while($row = $query->fetch_assoc()){
                       $empid = $row['empid'];
                       
@@ -113,6 +115,7 @@
                       $gross = $row['rate'] * $row['total_hr'];
                       $perday = $row['rate'] * 8;
                       $monthly_salary = $perday * 26;
+                      $perhour = $row['total_hr'];
 
                       // Deductions SSS PAGIBIG PHILHEALTH
                       // SSS
@@ -146,12 +149,14 @@
                       $total_deductions += $total_deduction;
                       $total_net_pay += $net;
                       $total_work_days += $total_working_days;
+                      $total_hours += $perhour;
 
                       echo "
                         <tr>
                           <td>".$row['employee_id']."</td>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
                           <td>".number_format($total_working_days,2)."</td>
+                          <td>".number_format($perhour)." hrs</td>
                           <td>".number_format($perday, 2)."</td>
                           <td>".number_format($gross, 2)."</td>
                           <td>".number_format($sss, 2)."</td>
@@ -161,6 +166,7 @@
                           <td>".number_format($total_deduction, 2)."</td>
                           <td>".number_format($net, 2)."</td>
                           <td>".number_format($decpay, 2)."</td>
+                          
                         </tr>
                       ";
                     }
@@ -171,6 +177,7 @@
                   <tr>
                     <th colspan="2">Total:</th>
                     <th><?php echo number_format($total_work_days,2); ?></th>
+                    <th><?php echo number_format($total_hours); ?> hrs</th>
                     <th><?php echo number_format($total_gross,2); ?></th>
                     <th><?php echo number_format($total_perday, 2); ?></th>
                     <th></th>
@@ -179,7 +186,6 @@
                     <th></th>
                     <th><?php echo number_format($total_deductions, 2); ?></th>
                     <th><?php echo number_format($total_net_pay, 2); ?></th>
-                    <th></th>
                   </tr>
                 </tfoot>
               </table>
