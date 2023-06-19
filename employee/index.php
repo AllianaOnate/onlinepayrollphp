@@ -154,6 +154,9 @@
     <div class="login-box-body">
         <form action="login.php" method="POST">
             <h2>Employee Login</h2>
+            <div class="callout-danger">
+                <p style="background-color: black;">Reminder: 3 Login Attempts Only</p>
+            </div>
             <div class="form-group has-feedback">
                 <ion-icon name="person-outline"></ion-icon>
                 <input type="text" class="form-control" name="username" required>

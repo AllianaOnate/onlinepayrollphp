@@ -1,5 +1,5 @@
 <?php
-// login.php
+
 session_start();
 include 'includes/conn.php';
 
@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
             if ($_SESSION['login_attempts'] >= 3) {
                 $sql_update = "UPDATE employees SET status = '1' WHERE username = '$username'";
                 $conn->query($sql_update);
-                $_SESSION['error'] = 'Incorrect password. Your account has been deactivated after 3 unsuccessful login attempts. Please contact the admin.';
+                $_SESSION['error'] = 'Deactivated account. Please contact the admin.';
             } else {
                 $_SESSION['error'] = 'Incorrect password. Please try again.';
             }
@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
     exit();
 }
 
-header('location: employee.php');
+header('location: index.php');
 exit();
 
 ?>
