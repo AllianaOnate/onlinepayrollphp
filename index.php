@@ -15,7 +15,7 @@
 		align-items: center;
 		min-height: 100vh;
 		width: 100%;
-		background: url('./images/login_bg.png');
+		background: url('./images/login-bg.png');
 		background-position: center;
 		background-size: cover;
 	}
@@ -149,7 +149,7 @@
 		display: block; 
 		border-radius: 10px; 
 	}
-    
+
   </style>
 </head>
 <body class="hold-transition login-page">
@@ -166,15 +166,14 @@
   	<div class="login-box-body">
     	<form id="attendance">
           <div class="form-group1">
-		  <ion-icon name="scan-outline"></ion-icon>
             <h4>Daily Login</h4>
-            <select class="form-control" name="status">
+            <select class="form-control" name="status" title="status">
               <option value="in">Time In</option>
               <option value="out">Time Out</option>
             </select>
           </div>
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control input-lg" id="employee" name="employee" required>
+        		<input type="text" title="employee" class="form-control input-lg" id="employee" name="employee" required>
             <label>Employee ID</label>
             <ion-icon name="today-outline"></ion-icon>
       		</div>
@@ -186,10 +185,10 @@
       		</div>
 
           <div class="admin-login-btn">
-		  	<p>Click here for <a href="http://localhost/onlinepayrollphp/admin">Admin Login</a>.</p>	
+				    <p>click here for Admin <a href="http://localhost/onlinepayrollphp/admin">login</a>.</p>	
 			    </div>
           <div class="employee-login-btn">
-		  	<p>Click here for <a href="http://localhost/onlinepayrollphp/employee/">Employee Login</a>.</p>	
+            <p>click here for Employee <a href="http://localhost/onlinepayrollphp/">login</a>.</p>	
           </div>
 
     	</form>
@@ -205,6 +204,9 @@
 </div>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="instascan.min.js"></script>
 
@@ -239,60 +241,6 @@ $(function() {
     });
   });
 });
-
-function startCamera() {
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(function(stream) {
-        var videoElement = document.getElementById('preview');
-        videoElement.srcObject = stream;
-      })
-      .catch(function(error) {
-        console.error('Error accessing camera:', error);
-      });
-  } else {
-    console.error('getUserMedia not supported');
-  }
-
-  let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  scanner.addListener('scan', function(content) {
-    document.getElementById('employee').value = content; // Set the scanned content to the employee input field
-    console.log(content);
-  });
-
-  Instascan.Camera.getCameras().then(function(cameras) {
-    if (cameras.length > 0) {
-      scanner.start(cameras[0]);
-    } else {
-      console.error('No cameras found.');
-    }
-  }).catch(function(e) {
-    console.error(e);
-  });
-
-  var videoElement = document.getElementById('preview');
-  videoElement.style.border = '2px solid white';
-}
-
-document.querySelector('ion-icon[name="scan-outline"]').addEventListener('click', function() {
-  var videoElement = document.getElementById('preview');
-  if (videoElement.style.border === '2px solid white') {
-    videoElement.style.border = 'none';
-    Instascan.Camera.getCameras().then(function(cameras) {
-      if (cameras.length > 0) {
-        var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-        scanner.stop();
-        videoElement.srcObject.getTracks()[0].stop();
-        videoElement.srcObject = null;
-      }
-    }).catch(function(e) {
-      console.error(e);
-    });
-  } else {
-    startCamera();
-  }
-});
-
 </script>
 </body>
 </html>
