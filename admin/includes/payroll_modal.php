@@ -1,4 +1,4 @@
-<!-- Delete -->
+
 <div class="modal fade" id="delete">
     <div class="modal-dialog">
         <div class="modal-content">

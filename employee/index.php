@@ -125,7 +125,28 @@
             color: #fff;
         }
 
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style type="text/css">
+        /* Styles for the login page */
+        /* ... */
+        
+        .callout-danger {
+            text-align: center;
+            position: absolute;
+            
+        }
 
+        .callout-danger p {
+            font-weight: bold;
+            color: white;
+            margin-top: 30px;
+            text-align: center;
+            
+        }
+    </style>
     </style>
 </head>
 <body class="hold-transition login-page">
