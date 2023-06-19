@@ -175,7 +175,7 @@
       		<div class="form-group has-feedback">
         		<input type="text" title="employee" class="form-control input-lg" id="employee" name="employee" required>
             <label>Employee ID</label>
-            <ion-icon name="today-outline"></ion-icon>
+            <ion-icon name="card-outline"></ion-icon>
       		</div>
 
           <div class="row">
@@ -185,10 +185,10 @@
       		</div>
 
           <div class="admin-login-btn">
-				    <p>click here for Admin <a href="http://localhost/onlinepayrollphp/admin">login</a>.</p>	
+				    <p>Click here for <a href="http://localhost/onlinepayrollphp/admin">Admin Login</a>.</p>	
 			    </div>
           <div class="employee-login-btn">
-            <p>click here for Employee <a href="http://localhost/onlinepayrollphp/">login</a>.</p>	
+            <p>Click here for <a href="http://localhost/onlinepayrollphp/">Employee Login</a>.</p>	
           </div>
 
     	</form>
